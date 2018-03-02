@@ -1,7 +1,7 @@
 <template>
 <div >
   <transition name="fade">
-    <!-- <initloader v-if="!appinitatedloader"></initloader> -->
+    <initloader v-if="!appinitatedloader"></initloader>
   </transition>
   <transition name="fade">
     <menuopencomp v-if="menuopened"></menuopencomp>
