@@ -3,9 +3,13 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: 'Nuxt boilerplate - bulma flavour',
+    title: 'Strypes (Prototype)',
     meta: [{
         charset: 'utf-8'
+      },
+      {
+        name: 'theme-color',
+        content: '#ff7700'
       },
       {
         name: 'viewport',
@@ -14,14 +18,14 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Nuxt boilerplate - bulma flavour'
+        content: 'Strypes (Prototype)'
       }
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    // link: [{
+    //   rel: 'icon',
+    //   type: 'image/x-icon',
+    //   href: '/favicon.ico'
+    // }]
   },
 
 
@@ -32,6 +36,8 @@ module.exports = {
     '~assets/css/marginpaddinghelpers.css',
     '~assets/bulmaCustom/custom/custom.css',
     '~assets/fonts/vis/stylesheet.css',
+    '~assets/fontello-104a8ccb/css/fontello.css',
+    // '~assets/fontawesome-free-5.0.8/web-fonts-with-css/css/fontawesome-all.min.css',
     '~assets/scss/main.scss',
     //'~assets/main.css',
     //'~assets/font-awesome-4.7.0/css/font-awesome.min.css',
@@ -44,9 +50,9 @@ module.exports = {
   router: {
     middleware: ['closeReadmore', 'closeMenu'],
     scrollBehavior: function(to, from, savedPosition) {
-      if(to.path === '/about' && from.path === '/about'){
+      if (to.path === '/about' && from.path === '/about') {
 
-      }else{
+      } else {
 
         if (savedPosition) {
           window.setTimeout(function() {
@@ -120,7 +126,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['axios', 'lodash','animejs'],
+    vendor: ['axios', 'lodash', 'animejs'],
 
 
     postcss: {

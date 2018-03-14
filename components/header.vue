@@ -4,14 +4,15 @@
 
     <div class="container">
       <div id="outerHeader" class="container pr-80 pl-80 ">
+
         <div id="innerHeader" :style="{'top':headerOffsetTop+'px'}">
           <div id="logoTypeHeaderWrapper" class="">
 
-            <p v-if="menuversion" class="logoTypeHeader is-size-2">
-              <span class="has-text-white ">Strypes</span><span class="pl-40  has-text-primary">Samen technologie.</span>
+            <p v-if="menuversion" class="logoTypeHeader is-size-4-touch is-size-2-desktop">
+              <span class="has-text-white ">Strypes</span><span class="pl-40  has-text-primary  is-hidden-touch">Samen technologie.</span>
             </p>
-            <p v-else class="logoTypeHeader is-size-2">
-              <span class="has-text-danger">Strypes</span><span class="pl-40 has-text-primary">Samen technologie.</span>
+            <p v-else class="logoTypeHeader  is-size-4-touch is-size-2-desktop">
+              <span class="has-text-danger">Strypes</span><span class="pl-40 has-text-primary  is-hidden-touch">Samen technologie.</span>
             </p>
 
           </div>
@@ -48,8 +49,8 @@ export default {
   },
   data: function() {
     return {
-      headerOffsetTopInit: 160,
-      headerOffsetTop: 160,
+      headerOffsetTopInit: 120,
+      headerOffsetTop: 120,
       headerSolidHeight: 0,
       savedScrollY: 0,
       setHeaderSolid: false,
@@ -57,6 +58,7 @@ export default {
       genericData: 'generic component text'
     }
   },
+  
   methods: {
 
 
@@ -143,6 +145,7 @@ export default {
     position: absolute;
     top: 0;
     z-index: 998;
+    width: 100%;
 
     #innerHeader {
         position: relative;
@@ -155,7 +158,7 @@ export default {
 
     #stripesWrapper {
         // position: absolute;
-        width: 55px;
+        width: 35px;
         float: right;
     }
 
@@ -163,6 +166,7 @@ export default {
         float: left;
         overflow: hidden;
         position: absolute;
+        padding-bottom: 4px;
         top: 50%;
         -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -178,7 +182,7 @@ export default {
 #stripes {
     width: 100%;
     overflow: hidden;
-    height: 95px;
+    height: 65px;
     position: relative;
     cursor: pointer;
     .el {
@@ -211,8 +215,8 @@ export default {
 }
 .el {
     width: 100%;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     position: absolute;
     height: 10%;
     &:first-of-type {

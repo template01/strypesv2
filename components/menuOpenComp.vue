@@ -4,7 +4,24 @@
   <div id="menuOpenInner" style="padding-top:255px;" class="container p-80">
     <div id="main-nav">
       <div class="columns">
-        <div v-for="(item,index) in mainnav"class="column" @mouseenter="setActive(index)" @mouseleave="setDeactive(index)">
+        <div class="column">
+          <p class="flex-container space-between">
+            <span class="menuItemWrapper" v-for="(item,index) in mainnav" @mouseenter="setActive(index)" @mouseleave="setDeactive(index)">
+              <span class="nav-item is-size-1 has-underline-1" :style="item.active ? {}:{'border-color':'transparent'}">
+                {{item.main}}
+              </span>
+            <span class="pt-20 desc is-size-4">
+                {{item.desc}}
+              </span>
+
+            </span>
+
+          </p>
+
+        </div>
+      </div>
+      <!-- <div class="columns">
+        <div v-for="(item,index) in mainnav" class="column" @mouseenter="setActive(index)" @mouseleave="setDeactive(index)">
           <p class="nav-item is-size-1 has-underline-1" :style="item.active ? {}:{'border-color':'transparent'}">
             {{item.main}}
           </p>
@@ -13,7 +30,7 @@
           </p>
         </div>
 
-      </div>
+      </div> -->
     </div>
 
     <div id="bottom-nav">
@@ -45,11 +62,11 @@ export default {
       genericData: 'generic component text',
       mainnav: [{
         'main': 'Over',
-        'desc': 'lalala',
+        'desc': 'Het DNA en het team van Strypes.',
         'active': false
       }, {
-        'main': 'Cases',
-        'desc': 'lalala',
+        'main': 'Diensten',
+        'desc': 'Inzicht in onze projecten.',
         'active': false
       }, {
         'main': 'Jobs',
@@ -57,19 +74,19 @@ export default {
         'active': false
       }, {
         'main': 'Blog',
-        'desc': 'lalall',
+        'desc': 'Blijf op de hoogte.',
         'active': false
       }]
     }
   },
   methods: {
-    setActive: function(index){
+    setActive: function(index) {
       // this.mainnav[index]/
-      this.$set( this.mainnav[index], 'active', true)
+      this.$set(this.mainnav[index], 'active', true)
     },
-    setDeactive: function(index){
+    setDeactive: function(index) {
       // this.mainnav[index]/
-      this.$set( this.mainnav[index], 'active', false)
+      this.$set(this.mainnav[index], 'active', false)
     }
   },
   computed: {
@@ -104,8 +121,18 @@ export default {
             top: calc(50% - 80px);
             transform: translateY(-50%);
             .nav-item {
-              display: inline-block;
+                display: inline-block;
                 cursor: pointer;
+            }
+
+            .flex-container {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                display: flex;
+            }
+            .space-between {
+                justify-content: space-between;
             }
             .column {
                 position: relative;
@@ -114,12 +141,17 @@ export default {
                     opacity: 0;
                     overflow: hidden;
                     position: absolute;
+                    left: 0;
+                    top: 70px;
                     transform: translateY(-10px);
                     transition: transform 1s, opacity 0.25s;
                 }
-                &:hover {
+                .menuItemWrapper{
+                  min-width: 200px;
+                  position: relative;
+                }
+                .menuItemWrapper:hover {
                     color: $white;
-
                     .desc {
                         opacity: 1;
                         transition-delay: 0.1s;

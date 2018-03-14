@@ -32,7 +32,7 @@ import {
 import anime from 'animejs'
 
 export default {
-  props: [],
+  props: ['loop'],
   data: function() {
     return {
       stripes: 5,
@@ -71,13 +71,18 @@ export default {
           return vm.randdelay() * 5;
         },
         complete: function(anim) {
-          if (!vm.appinitated) {
-            anim.restart()
-          } else {
-            if (itemNumber > 0 && itemNumber < vm.stripes - 1) {
-              vm.runEndAnime(itemNumber)
+          if (!vm.loop) {
+            if (!vm.appinitated) {
+              anim.restart()
+            } else {
+              if (itemNumber > 0 && itemNumber < vm.stripes - 1) {
+                vm.runEndAnime(itemNumber)
+              }
             }
+          } else {
+            anim.restart()
           }
+
         }
 
       })
@@ -88,8 +93,8 @@ export default {
         easing: [0.42, 0, 0.58, 1],
         // loop: true,
         targets: '#stripes .el' + itemNumber,
-        width: '55px',
-        left: vm.widthStripesData - 55 + 'px',
+        width: vm.getmenuwidth+'px',
+        left: vm.widthStripesData - vm.getmenuwidth + 'px',
         opacity: '1',
         duration: 250,
         complete: function(anim) {
@@ -123,6 +128,14 @@ export default {
 
   },
   computed: {
+    getmenuwidth: function() {
+      if(this.screensize==='is-screen-s' || this.screensize==='is-screen-m'){
+        return '30'
+      }else{
+        return '35'
+      }
+    },
+
     ...mapGetters({
       appinitated: "GET_APP_INITIATED",
     }),
@@ -147,21 +160,35 @@ export default {
 #outerHeader {
     position: fixed;
     height: 100%;
-
+    width: 100%;
     #innerHeader {
         position: relative;
         top: 50%;
         transform: perspective(1px) translateY(-50%);
         transition: all 0.5s;
         &.innerHeaderSlideUp {
-            top: 160px;
+            top: 120px;
             transform: translateY(0%);
         }
+
+        @media only screen and (max-width: 1023px) {
+          &.innerHeaderSlideUp {
+              top: 0;
+          }
+        }
+
     }
 
     .logoTypeHeader {
-      max-width:260px;
+        max-width: 260px;
         width: 25%;
+        // width: 100%;
+    }
+
+    @media only screen and (max-width: 1023px) {
+        .logoTypeHeader {
+            width:240px;
+        }
     }
 
     #stripesWrapper {
@@ -195,8 +222,20 @@ export default {
     position: relative;
 
     &.stripesSlideUp {
-        height: 95px;
+        height: 65px;
+        .el {
+            &:first-of-type {}
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
     }
+
+    @media only screen and (max-width: 1023px) {
+      &.stripesSlideUp {
+          height: 55px;
+      }
+    }
+
 }
 .line {}
 .el {

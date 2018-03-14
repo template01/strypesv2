@@ -23,12 +23,29 @@ html{
 }
 
 
-.is-size-1{
-  line-height: 1.05;
+.large-header{
+  line-height: 1.025 !important;
+}
+
+
+
+
+.icon-fontello{
+  font-size: 80%;
 }
 //
 .section-wrapper{
   position: relative;
+}
+
+@media only screen and (max-width: 1023px) {
+
+  .background-image{
+    position:relative !important;
+
+
+  }
+
 }
 
 .background-image{
@@ -50,8 +67,12 @@ html{
 .bg-blue{
   background: $blue;
   p{
-    color: $white;
+    color: $white ;
   }
+}
+
+.bg-white{
+  background: $white;
 }
 
 .bg-grey{
@@ -89,8 +110,14 @@ bottom: 0;
 }
 
 
-@for $i from 1 through 4 {
-  .push-#{$i}00{
-      margin-top: 100*$i+px;
-  };
+
+
+@media only screen and (min-width: 1024px) {
+
+  @for $i from 1 through 4 {
+    .push-#{$i}00{
+        margin-top: 100*$i+px;
+    };
+  }
+
 }
